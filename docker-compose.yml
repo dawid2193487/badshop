@@ -1,0 +1,14 @@
+services:
+  php:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./code:/code
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: store
