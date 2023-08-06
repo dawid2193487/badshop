@@ -11,6 +11,7 @@ $user_pk = get_user_pk();
         <a href="/register.php">Zarejestruj się</a>
     <?php } else { ?>
         <span><?php echo(get_user_name($user_pk))?></span>
+        <a href="/create_product.php">Sprzedaj</a>
         <a href="/logout.php">Wyloguj się</a>
     <?php } ?>
 </div>

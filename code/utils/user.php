@@ -103,7 +103,7 @@ function force_authenticated() {
         exit();
     }
 
-    $current_user = get_user();
+    $current_user = get_user_pk();
 
     if ($current_user == null) {
         header("Location: ".SIGN_IN_PATH);

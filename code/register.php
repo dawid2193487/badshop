@@ -1,4 +1,6 @@
-<?php include_once 'layout/header.php'; ?>
+<?php 
+include_once 'layout/header.php'; 
+?>
 
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include_once 'utils/user.php';
