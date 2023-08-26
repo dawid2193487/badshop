@@ -35,7 +35,7 @@ function sign_in($username, $password) {
 
     $existing_user = $mysqli->query("SELECT pk FROM Users WHERE username='".$username."' AND password_hash='".$password."';");
     if ($existing_user->num_rows == 0 ) {
-        return "Niepoprawny login lub hasło.";
+        return false;
     }
 
     $pk = $existing_user->fetch_object()->pk;

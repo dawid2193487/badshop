@@ -1,6 +1,10 @@
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include_once 'utils/user.php';
     $token = sign_in($_POST["username"], $_POST["password"]);
+    if ($token == false) {
+        header('Location: /');
+        exit();
+    }
     setcookie("TOKEN", $token);
     header('Location: /');
     exit();
