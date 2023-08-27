@@ -7,7 +7,7 @@ include_once 'user.php';
 const UPLOAD_PATH = "/code/uploads/";
 
 function create_media($product_pk) {
-    
+    // provides a unrestricted file upload vuln
     force_authenticated();
     $mysqli = get_mysqli();
     $file_ext = strtolower(pathinfo($_FILES["upload"]["name"], PATHINFO_EXTENSION));
@@ -26,6 +26,32 @@ function create_media($product_pk) {
     $target_file = UPLOAD_PATH . $media_pk . "." . $file_ext;
 
     move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file);
+    
+    return $media_pk;
+}
+
+function create_media_from_url($product_pk, $url) {
+    // provides unrestricted file upload vuln
+    // provides     
+    force_authenticated();
+    $mysqli = get_mysqli();
+    $contents = file_get_contents($url);
+    $file_ext = strtolower(pathinfo($url, PATHINFO_EXTENSION));
+    
+    $qstring = "
+        INSERT INTO Media (product_pk, file_ext) 
+        VALUES (".$product_pk.",'".$file_ext."');";
+
+    $product_created = $mysqli->query($qstring);
+    
+    if (!$product_created) {
+        return "Nie udało się dodać pliku.";
+    }
+    
+    $media_pk = $mysqli->insert_id;
+    $target_file = UPLOAD_PATH . $media_pk . "." . $file_ext;
+
+    file_put_contents($target_file, $contents);
     
     return $media_pk;
 }

@@ -178,3 +178,25 @@ body {
     height: 200px;
     object-fit: cover;
 }
+
+label > span {
+    width: 100%;
+    display: block;
+    font-weight: bold;
+    margin: 3px;
+}
+
+label > input, label > textarea {
+    width: 100%;
+    padding: 0.7em;
+}
+
+label > textarea {
+    height: 250px;
+}
+
+button[type="submit"] {
+    min-width: 150px;
+    height: 3em;
+    /* background-color: var(--indigo) */
+}
