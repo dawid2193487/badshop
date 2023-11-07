@@ -3,7 +3,7 @@
 include_once 'get_mysqli.php';
 include_once 'user.php';
 
-define(SIGN_IN_PATH, "/sign_in.php");
+define(SIGN_IN_PATH, "/signin.php");
 
 function create_product($title, $description, $price) {
     force_authenticated();
@@ -20,7 +20,7 @@ function create_product($title, $description, $price) {
         return "Nie udało się stworzyć oferty.";
     }
 
-    return "Oferta utworzona!";
+    return "Oferta utworzona! ID $$".$mysqli->insert_id."$$";
 }
 
 function get_products_of_user($user_pk) {
