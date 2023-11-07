@@ -42,7 +42,7 @@ services:
       - PROXY=1 
 
     volumes:
-      - ./myrules/rules:/opt/owasp-crs/rules
+      - ./rules:/opt/owasp-crs/rules
 
   test:
     build: ./test/
