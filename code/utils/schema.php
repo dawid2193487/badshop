@@ -14,12 +14,33 @@ CREATE TABLE Users (
 )");
 
 /**
+ * Create Profile
+ */
+$mysqli->query("
+CREATE TABLE Profiles (
+    user_pk INT UNSIGNED NOT NULL,
+    description TEXT NOT NULL
+)");
+
+/**
  * Create Tokens
  */
 $mysqli->query("
 CREATE TABLE Tokens (
     user_pk INT UNSIGNED NOT NULL,
     token VARCHAR(64) NOT NULL
+)");
+
+/**
+ * Create Messages
+ */
+$mysqli->query("
+CREATE TABLE Messages (
+    pk INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    from_user INT UNSIGNED NOT NULL,
+    to_user INT UNSIGNED NOT NULL,
+    message TEXT NOT NULL,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )");
 
 /**
@@ -53,6 +74,25 @@ CREATE TABLE Products (
     user_pk INT UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    price INT UNSIGNED NOT NULL
+    price INT UNSIGNED NOT NULL,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )");
+
+/**
+ * Set up index
+ */
+$mysqli->query("
+ALTER TABLE Products ADD FULLTEXT(title, description);
+");
+
+include "user.php";
+create_user("admin", "aezakmi");
+create_user("sklepikarz", "warez");
+create_user("janusz101", "123456");
+
+include "product.php";
+$_COOKIE["TOKEN"] = sign_in("sklepikarz", "warez");
+echo(create_product("Pizza Donatello", "Najlepsza pizza", 12));
+
+echo("gotowe");
 ?>

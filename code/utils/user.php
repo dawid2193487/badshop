@@ -2,7 +2,7 @@
 
 include_once 'get_mysqli.php';
 
-const SIGN_IN_PATH = "/sign_in.php";
+const SIGN_IN_PATH = "/signin.php";
 
 function create_user($username, $password) {
     $mysqli = get_mysqli();
@@ -16,6 +16,12 @@ function create_user($username, $password) {
     $user_created = $mysqli->query("
         INSERT INTO Users (username, password_hash) 
         VALUES ('".$username."', '".$password."');"
+    );
+    $user_pk = $mysqli->insert_id;
+
+    $mysqli->query("
+        INSERT INTO Profiles (user_pk, description) 
+        VALUES ('".$user_pk."', '');"
     );
 
     if (!$user_created) {
@@ -85,6 +91,18 @@ function get_user_name($pk) {
     }
 
     return $user_pk->fetch_object()->username;
+}
+
+function get_profile($pk) {
+    $mysqli = get_mysqli();
+    $query = "SELECT * FROM Profiles WHERE user_pk='".$pk."';";
+    $profile = $mysqli->query($query);
+
+    if ($profile->num_rows == 0) {
+        return null;
+    }
+
+    return $profile->fetch_object();
 }
 
 function logout() {

@@ -51,4 +51,14 @@ function get_products() {
         yield $product;
     }
 }
+
+function get_products_search($search) {
+    $mysqli = get_mysqli();
+    $query = "SELECT * FROM Products WHERE MATCH (title, description) AGAINST ('".$search."');";
+    $result = $mysqli->query($query);
+
+    while ($product = $result->fetch_object()) {
+        yield $product;
+    }
+}
 ?>

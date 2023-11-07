@@ -200,3 +200,55 @@ button[type="submit"] {
     height: 3em;
     /* background-color: var(--indigo) */
 }
+
+.searchbox {
+    background-color: white;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.498);
+    color: black;
+    padding: 10px 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 var(--indigo);
+    margin-left: 4px;
+    margin-right: 4px;
+    transition: box-shadow 0.2s;
+}
+
+.searchbox:hover, .searchbox:focus  {
+    box-shadow: 0 0 18px var(--indigo);
+}
+
+.message {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.5em;
+}
+
+.message.own {
+    justify-content: right;
+}
+
+.message .timestamp {
+    margin: 0 0.3em;
+    opacity: 0;
+}
+
+.message:hover .timestamp {
+    opacity: 1;
+}
+
+.message .content {
+    display: inline-block;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.498);
+    padding: 0.5em;
+}
+
+.message.own .content {
+    border: 1px solid rgba(2, 194, 2, 0.498);
+    order: 1;
+}
+
+.message.own .timestamp {
+    order: 0;
+}

@@ -9,6 +9,9 @@
         <div class="description">
             <?php echo substr($product->description, 0, 50); ?>
         </div>
+        <div class="created-on">
+            <?php echo $product->creation_date ?>
+        </div>
     </div>
 <?php } ?>
 
@@ -27,6 +30,12 @@
     <div class="product-container">
         <div class="product-detail">
             <div class="title"> <?php echo $product->title; ?> </div>
+            <div class="submitted-by">
+                Sprzedawane przez 
+                <a href="/profile.php?pk=<?php echo $product->user_pk ?>">
+                    <?php echo get_user_name($product->user_pk); ?>
+                </a>
+            </div>
             <div class="price">
                 <?php echo $product->price; ?> zł
             </div>
@@ -51,11 +60,6 @@
             </div>
             <div class="description">
                 <?php echo $product->description; ?>
-            </div>
-        </div>
-        <div class="vendor-detail">
-            Sprzedawane przez <div class="submitted-by">
-                <?php echo get_user_name($product->user_pk); ?>
             </div>
         </div>
     </div>
