@@ -13,7 +13,9 @@ $user_pk = get_user_pk();
         <a href="/signin.php">Zaloguj się</a>
         <a href="/register.php">Zarejestruj się</a>
     <?php } else { ?>
-        <span><?php echo(get_user_name($user_pk))?></span>
+        <span><?php echo(get_balance($user_pk))?>zł</span>
+        <a href="/profile.php?pk=<?php echo $user_pk?>"><?php echo(get_user_name($user_pk))?></a>
+        <a href="/top_up.php">Doładuj</a>
         <a href="/create_product.php">Sprzedaj</a>
         <a href="/logout.php">Wyloguj się</a>
     <?php } ?>

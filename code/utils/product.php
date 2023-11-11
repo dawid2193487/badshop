@@ -61,4 +61,18 @@ function get_products_search($search) {
         yield $product;
     }
 }
+
+function remove_product($pk) {
+    force_authenticated();
+    $mysqli = get_mysqli();
+    $user_pk = get_user_pk();
+    $product = get_product($pk);
+    if ($product->user_pk == $user_pk) {
+        $query = "DELETE FROM Products WHERE pk=".$pk.";";
+        $mysqli->query($query);
+        return "Produkt usunięty";
+    } else {
+        return "Nie możesz usunąć tego produktu";
+    }
+}
 ?>

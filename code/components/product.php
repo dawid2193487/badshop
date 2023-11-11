@@ -12,6 +12,12 @@
         <div class="created-on">
             <?php echo $product->creation_date ?>
         </div>
+        <div class="sold-by">
+            Sprzedawane przez
+            <a href="/profile.php?pk=<?php echo $product->user_pk ?>">
+                <?php echo get_user_name($product->user_pk); ?>
+            </a>
+        </div>
     </div>
 <?php } ?>
 
@@ -27,6 +33,11 @@
     $user_pk = get_user_pk();
     $is_owner = $user_pk == $product->user_pk;
 ?>
+    <style>
+        .purchase, .remove {
+            display: inline-block;
+        }
+    </style>
     <div class="product-container">
         <div class="product-detail">
             <div class="title"> <?php echo $product->title; ?> </div>
@@ -38,6 +49,20 @@
             </div>
             <div class="price">
                 <?php echo $product->price; ?> zł
+            </div>
+            <div class="purchase">
+            <form method="GET" action="/purchase.php">
+                <input type="hidden" name="pk" id="pk" value="<?php echo $product->pk;?>">
+                <button class="button" type="submit">Kup teraz!</button>
+            </form>
+            </div>
+            <div class="remove">
+                <?php if ($is_owner) {?>
+                    <form method="GET" action="/remove_product.php">
+                        <input type="hidden" name="pk" id="pk" value="<?php echo $product->pk;?>">
+                        <button class="button" type="submit">Usuń</button>
+                    </form>
+                <?php } ?>
             </div>
             <div class="gallery">
                 <?php 
@@ -61,6 +86,7 @@
             <div class="description">
                 <?php echo $product->description; ?>
             </div>
+            
         </div>
     </div>
 <?php } ?>

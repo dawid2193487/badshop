@@ -22,6 +22,9 @@ include_once "components/product.php";
     }
     ?>
 </p>
+<?php if ($_GET["pk"] == get_user_pk()) { ?>
+    <a href="/set_description.php">Zmień opis</a>
+<?php } ?>
 
 <?php render_product_list($products) ?>
 

@@ -3,6 +3,7 @@
 mysqli_report(MYSQLI_REPORT_ERROR);
 $mysqli = new mysqli("db", "root", "root", "store");
 
+
 /**
  * Create Users
  */
@@ -10,7 +11,8 @@ $mysqli->query("
 CREATE TABLE Users (
     pk INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
-    password_hash VARCHAR(64) NOT NULL
+    password_hash VARCHAR(64) NOT NULL,
+    balance INT UNSIGNED DEFAULT 500
 )");
 
 /**
@@ -93,6 +95,9 @@ create_user("janusz101", "123456");
 include "product.php";
 $_COOKIE["TOKEN"] = sign_in("sklepikarz", "warez");
 echo(create_product("Pizza Donatello", "Najlepsza pizza", 12));
+echo(create_product("Pizza Guseppe", "mid tier imo", 12));
+echo(create_product("Pizza Feliciana", "też dobra jest", 12));
 
 echo("gotowe");
+
 ?>

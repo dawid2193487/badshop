@@ -105,6 +105,12 @@ function get_profile($pk) {
     return $profile->fetch_object();
 }
 
+function set_description($pk, $description) {
+    $mysqli = get_mysqli();
+    $query = "UPDATE Profiles SET description='".$description."' WHERE user_pk='".$pk."';";
+    $mysqli->query($query);
+}
+
 function logout() {
     if (!isset($_COOKIE["TOKEN"])) {
         return;
@@ -114,6 +120,28 @@ function logout() {
     $mysqli->query("DELETE FROM Tokens WHERE token='".$_COOKIE["TOKEN"]."';");
 }
 
+function get_balance($pk) {
+    $mysqli = get_mysqli();
+    $query = "SELECT balance FROM Users WHERE pk='".$pk."';";
+    $profile = $mysqli->query($query);
+
+    if ($profile->num_rows == 0) {
+        return null;
+    }
+
+    return $profile->fetch_object()->balance;
+}
+
+function set_balance($pk, $balance) {
+    $mysqli = get_mysqli();
+    $query = "UPDATE Users SET balance=".$balance." WHERE pk='".$pk."';";
+    $mysqli->query($query);
+}
+
+function charge_user($pk, $value) {
+    $balance = get_balance($pk);
+    set_balance($pk, $balance - $value);
+}
 
 function force_authenticated() {
     if (!isset($_COOKIE["TOKEN"])) {
