@@ -6,7 +6,7 @@ $user_pk = get_user_pk();
 <div class="navbar">
     <a class="logo" href="/">Alledrogo</a>
     <form action="/search.php" method="get">
-        <input class="searchbox" type="text" id="q" name="q">
+        <input class="searchbox" type="text" id="q" name="q" placeholder="Szukaj">
     </form>
     <div class="fill"></div>
     <?php  if (is_null($user_pk)) { ?>
