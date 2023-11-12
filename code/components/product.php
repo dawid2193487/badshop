@@ -7,7 +7,7 @@
             <?php echo $product->price; ?> zł
         </div>
         <div class="description">
-            <?php echo substr($product->description, 0, 50); ?>
+            <?php echo $product->description ?>
         </div>
         <div class="created-on">
             <?php echo $product->creation_date ?>
@@ -21,7 +21,9 @@
     </div>
 <?php } ?>
 
-<?php function render_product_list($products_iter) { ?>
+<?php function render_product_list($products_iter) { 
+    // print_r(iterator_to_array($products_iter))
+    ?>
     <div class="products"><?php
         foreach($products_iter as $product) {
             render_product_preview($product);

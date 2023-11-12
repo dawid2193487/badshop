@@ -90,7 +90,7 @@ ALTER TABLE Products ADD FULLTEXT(title, description);
 include "user.php";
 create_user("admin", "aezakmi");
 create_user("sklepikarz", "warez");
-create_user("janusz101", "123456");
+create_user("haxxor", "123456");
 
 include "product.php";
 $_COOKIE["TOKEN"] = sign_in("sklepikarz", "warez");
