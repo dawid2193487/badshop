@@ -1,3 +1,0 @@
-[submodule "modsecurity-crs-docker"]
-	path = modsecurity-crs-docker
-	url = https://github.com/coreruleset/modsecurity-crs-docker.git
