@@ -1,0 +1,10 @@
+---
+payload:
+  - "http://internal"
+  - "http://localhost/login.php"
+encoder:
+  - Plain
+placeholder:
+  - RequestBody
+type: "Server Side Request Forgery"
+...
