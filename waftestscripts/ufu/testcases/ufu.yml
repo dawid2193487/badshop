@@ -1,0 +1,8 @@
+---
+payload:
+  - "script.php"
+encoder:
+  - Plain
+placeholder:
+  - RequestBody
+type: "Unrestricted File Upload"
