@@ -12,21 +12,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: store
-
-  # nginx:
-  #   extends: 
-  #     file: ./modsecurity-crs-docker/docker-compose.yaml
-  #     service: crs-nginx  
-  #   # image: owasp/modsecurity-crs:3.3.5-nginx-202308071108
-
-  #   environment:
-  #     - PARANOIA=2
-  #     - SERVERNAME=php
-  #     - PORT=80
-  #     - SSL_ENGINE=off
-  #     - BACKEND=http://php:8000
-  #     - PROXY=1 
-
+  
   nginx:
     extends: 
       file: ./modsecurity-crs-docker/docker-compose.yaml
@@ -34,7 +20,7 @@ services:
     # image: owasp/modsecurity-crs:3.3.5-nginx-202308071108
 
     environment:
-      - PARANOIA=2
+      - PARANOIA=4
       - SERVERNAME=php
       - PORT=80
       - SSL_ENGINE=off
