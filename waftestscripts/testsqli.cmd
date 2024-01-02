@@ -1,1 +1,1 @@
-docker run --rm --network="host" -v ${PWD}/reports:/app/reports -v ${PWD}/sqli:/app/testcases wallarm/gotestwaf --url=http://localhost/ --noEmailReport --reportFormat=none
+docker run --rm --network="host" -v reports:/app/reports -v sqli:/app/testcases wallarm/gotestwaf --url=http://localhost/ --noEmailReport --reportFormat=none
