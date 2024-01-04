@@ -4,7 +4,7 @@ $user_pk = get_user_pk();
 ?>
 
 <div class="navbar">
-    <a class="logo" href="/">Alledrogo</a>
+    <a class="logo" href="/">Badshop</a>
     <form action="/search.php" method="get">
         <input class="searchbox" type="text" id="q" name="q" placeholder="Szukaj">
     </form>
